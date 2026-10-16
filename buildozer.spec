@@ -6,7 +6,8 @@ source.dir = .
 source.include_exts = py,png,jpg,kv,atlas
 version = 0.1
 
-requirements = python3,kivy,requests,urllib3,chardet,idna,certifi,pyjnius
+# Pinned to Python 3.11.9 and stable Kivy/Pyjnius so C-compilation succeeds
+requirements = python3==3.11.9,kivy==2.3.1,pyjnius==1.6.1,requests,urllib3,chardet,idna,certifi
 
 orientation = portrait
 fullscreen = 0
@@ -16,8 +17,14 @@ android.api = 33
 android.minapi = 21
 android.ndk = 25b
 android.accept_sdk_license = True
-android.archs = arm64-v8a, armeabi-v7a
+
+# Build for modern 64-bit Android phones (2x faster & prevents log truncation)
+android.archs = arm64-v8a
+
+# Use stable python-for-android release
+p4a.branch = release-2024.01.21
 
 [buildozer]
-log_level = 2
+# Set log_level to 1 so GitHub logs never truncate
+log_level = 1
 warn_on_root = 0
