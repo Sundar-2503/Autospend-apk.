@@ -1,0 +1,61 @@
+===================================================================
+   AUTOMATED EXPENSE TRACKER APK - COMPLETE STEP-BY-STEP GUIDE
+===================================================================
+
+WHAT IS INSIDE THIS ZIP FILE?
+-----------------------------
+1. main.py                     -> Your Android Kivy App code (reads SMS & extracts expenses).
+2. buildozer.spec              -> Configuration file for packaging the APK (root warning fixed!).
+3. Build_APK_in_Colab.ipynb    -> Ready-to-run Google Colab Notebook (EASIEST METHOD).
+4. .github/workflows/build.yml -> Automated GitHub Actions APK builder workflow.
+5. backend_api.py              -> (Optional) FastAPI server to store SMS expenses in SQLite.
+6. dashboard.py                -> (Optional) Streamlit dashboard to view expenses on PC.
+7. STEP_BY_STEP_GUIDE.txt      -> This instruction manual.
+
+===================================================================
+METHOD 1: THE EASIEST WAY (GOOGLE COLAB - NO SETUP NEEDED)
+===================================================================
+Why you got the "No buildozer.spec found" error earlier:
+When you upload files manually to Colab, sometimes they land in the wrong folder or Windows renames them to "buildozer.spec.txt". 
+
+To avoid all errors, follow these exact steps:
+1. Extract this ZIP file on your laptop.
+2. Go to https://colab.research.google.com/
+3. Click "File" -> "Upload notebook" and select "Build_APK_in_Colab.ipynb" from the extracted folder.
+4. Click "Run" (the Play button) on Cell 1, Cell 2, Cell 3, and Cell 4 in order.
+   (Cells 2 and 3 automatically create main.py and buildozer.spec inside Colab so you don't even have to upload them manually!)
+5. Wait 15 to 20 minutes while Cell 4 finishes building.
+6. Once you see "# Android packaging done!", click the Folder icon on the left sidebar of Google Colab.
+7. Open the "bin" folder, right-click "expensetracker-0.1-arm64-v8a_armeabi-v7a-debug.apk", and click "Download".
+
+===================================================================
+METHOD 2: GITHUB ACTIONS (FREE ON PUBLIC REPOSITORIES)
+===================================================================
+You do NOT need GitHub Pro! Just make the repository Public:
+1. Log in to https://github.com/ and click the "+" icon -> "New repository".
+2. Name it "expense-tracker-apk", select "Public", and click "Create repository".
+3. Click "uploading an existing file" on the setup page.
+4. Drag and drop ALL files and folders from this extracted ZIP (including main.py, buildozer.spec, and the .github folder) into GitHub.
+5. Click "Commit changes".
+6. Click the "Actions" tab at the top of your repository.
+7. You will see "Build Android APK" running automatically. Wait ~15 minutes for it to turn green.
+8. Click on the completed workflow run, scroll down to "Artifacts", and click "expense-tracker-apk" to download your APK zip!
+
+===================================================================
+HOW TO INSTALL & USE ON YOUR ANDROID PHONE
+===================================================================
+1. Transfer the downloaded .apk file to your phone (via WhatsApp, Telegram, USB, or Google Drive).
+2. Tap the .apk file to install. If Android shows a Play Protect warning ("Blocked by Play Protect" because it is a personal debug build), tap "More details" -> "Install anyway".
+3. Open "Auto Expense Tracker" and click "Allow" when it asks for SMS permissions.
+4. Tap "Scan Inbox for Expenses" to immediately see all your bank debit/UPI transactions!
+
+===================================================================
+(OPTIONAL) HOW TO RUN THE FASTAPI BACKEND & STREAMLIT DASHBOARD
+===================================================================
+If you want to test the backend and dashboard on your laptop:
+1. Install dependencies:
+   pip install fastapi uvicorn streamlit requests pandas
+2. Start the FastAPI server:
+   uvicorn backend_api:app --reload
+3. In another terminal, start the Streamlit dashboard:
+   streamlit run dashboard.py
